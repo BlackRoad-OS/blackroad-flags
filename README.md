@@ -1,99 +1,20 @@
-# BlackRoad Feature Flags
+# blackroad-flags
 
-Feature flag service for toggles, gradual rollouts, A/B testing, and user targeting.
+Feature Flags - toggles, rollouts, A/B testing, user targeting
 
-## Live
+## Organization
 
-- **Dashboard**: https://blackroad-flags.amundsonalexa.workers.dev
-- **API**: https://blackroad-flags.amundsonalexa.workers.dev/api/flags
+**BlackRoad-OS** — Core platform — websites, integrations, coordination
 
-## Features
+## BlackRoad OS
 
-- **Boolean Flags** - Simple on/off toggles
-- **Percentage Rollouts** - Gradual feature releases
-- **A/B Variants** - Multi-variant experiments
-- **User Targeting** - Rules based on user attributes
-- **Consistent Hashing** - Same user gets same variant
-- **Multi-environment** - Production, staging, development
+BlackRoad OS is a distributed AI operating system — 20 domains, 668 repositories, 1,000 AI agents, and sovereign infrastructure running on Raspberry Pis and Hailo-8 accelerators. No cloud dependency.
 
-## Flag Types
+- [blackroad.io](https://blackroad.io) — Main platform
+- [docs.blackroad.io](https://docs.blackroad.io) — Documentation
+- [GitHub](https://github.com/BlackRoad-OS) — This organization
 
-| Type | Description | Example |
-|------|-------------|---------|
-| `boolean` | Simple on/off | Dark mode |
-| `percentage` | Gradual rollout | 25% of users |
-| `variant` | A/B testing | Control vs Variant A |
-| `targeting` | Rule-based | Beta for @company.com |
+**Language:** TypeScript
 
-## API
 
-### GET /api/flags
-List all flags.
-
-### GET /api/flags/:id
-Get a single flag.
-
-### PUT /api/flags/:id
-Update flag (enable/disable, change rollout).
-
-### POST /api/evaluate
-Evaluate a flag for a user context.
-
-```json
-{
-  "flag": "beta-features",
-  "context": {
-    "userId": "usr_123",
-    "email": "user@blackroad.io",
-    "plan": "enterprise"
-  }
-}
-```
-
-Response:
-```json
-{
-  "flag": "beta-features",
-  "enabled": true
-}
-```
-
-### POST /api/evaluate-all
-Evaluate all flags for a context.
-
-## Targeting Operators
-
-| Operator | Description |
-|----------|-------------|
-| `equals` | Exact match |
-| `contains` | Substring match |
-| `startsWith` | Prefix match |
-| `endsWith` | Suffix match |
-| `in` | Value in list |
-| `greaterThan` | Numeric comparison |
-| `lessThan` | Numeric comparison |
-
-## SDK Usage
-
-```typescript
-const flags = await fetch('https://blackroad-flags.../api/evaluate-all', {
-  method: 'POST',
-  body: JSON.stringify({ context: { userId: user.id, email: user.email } })
-}).then(r => r.json());
-
-if (flags['new-dashboard'].enabled) {
-  showNewDashboard();
-}
-```
-
-## Development
-
-```bash
-npm install
-npm run dev      # Local development
-npm run deploy   # Deploy to Cloudflare
-```
-
-## License
-
-Proprietary - BlackRoad OS, Inc.
+*© 2024-2026 BlackRoad OS, Inc. All Rights Reserved.*
